@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - To-Do List App</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dashboard-container {
+            background: rgba(255,255,255,0.97);
+            padding: 36px 32px 28px 32px;
+            width: 420px;
+            box-shadow: 0 12px 40px rgba(44,62,80,0.18);
+            border-radius: 22px;
+            position: relative;
+            animation: fadeIn 0.7s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1 {
+            text-align: center;
+            color: #0984e3;
+            font-weight: 700;
+            margin-bottom: 22px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+        .stats {
+            margin-bottom: 28px;
+            background: #f7fafd;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+            padding: 18px 16px;
+        }
+        .stats div {
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            color: #636e72;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stats div strong {
+            color: #3a3a3a;
+            font-weight: 700;
+        }
+        .stat-number {
+            background: linear-gradient(90deg, #74ebd5 0%, #ACB6E5 100%);
+            color: #fff;
+            padding: 3px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.08);
+        }
+        .deadlines-section {
+            margin-top: 18px;
+            background: #f7fafd;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+            padding: 16px 14px;
+        }
+        .deadlines-section strong {
+            color: #3a3a3a;
+            font-weight: 700;
+            font-size: 1.08rem;
+        }
+        .deadlines-list {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+        .deadlines-list li {
+            font-size: 1rem;
+            color: #636e72;
+            margin-bottom: 6px;
+            padding: 4px 0;
+            border-left: 4px solid #74ebd5;
+            background: #eaf6fb;
+            border-radius: 6px;
+            padding-left: 10px;
+        }
+        .deadlines-list li:last-child {
+            margin-bottom: 0;
+        }
+        .back-link {
+            display: block;
+            margin-top: 28px;
+            text-align: center;
+            color: #0984e3;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border: 1px solid #0984e3;
+            border-radius: 8px;
+            padding: 10px 0;
+            background: #f7fafd;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+        }
+        .back-link:hover {
+            background: #dfe6e9;
+            color: #636e72;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.12);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>📊 Dashboard</h1>
+        <div class="stats">
+            <div><strong>Total Tasks:</strong> <span class="stat-number">{{ total }}</span></div>
+            <div><strong>Completed Tasks:</strong> <span class="stat-number">{{ completed }}</span></div>
+            <div><strong>Pending Tasks:</strong> <span class="stat-number">{{ pending }}</span></div>
+            <div><strong>High Priority Tasks:</strong> <span class="stat-number">{{ high_priority }}</span></div>
+        </div>
+        <div class="deadlines-section">
+            <strong>Upcoming Deadlines:</strong>
+            <ul class="deadlines-list">
+                {% for d in deadlines %}
+                    <li>{{ d }}</li>
+                {% else %}
+                    <li>No deadlines set.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="/" class="back-link">← Back to To-Do List</a>
+    </div>
+</body>
+</html>
